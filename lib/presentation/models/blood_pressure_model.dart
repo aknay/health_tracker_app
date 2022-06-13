@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:collection/collection.dart';
-import 'package:dartz/dartz.dart';
 import 'package:healthtracker/domain/models/blood_pressure_reading.dart';
 import 'package:intl/intl.dart';
 
@@ -41,15 +40,9 @@ class BloodPressureReadingStatistic {
 
   num get maxValue => reading.isEmpty ? 0 : reading.map((e) => e.systolic).reduce(max);
 
-  double get averageSystolicAsFixedPrecision {
-    return systolicAverage.toInt().toDouble();
-    // return optionOf(double.tryParse(g)).fold(() => 0, (a) => a);
-  }
+  int get averageSystolicAsFixedPrecision => systolicAverage.toInt();
 
-  double get averageDiastolicAsFixedPrecision {
-    final g = diastolicAverage.toStringAsFixed(1);
-    return optionOf(double.tryParse(g)).fold(() => 0, (a) => a);
-  }
+  int get averageDiastolicAsFixedPrecision => diastolicAverage.toInt();
 
   List<BloodPressureDayAverage> getBloodGlucoseDayAverage(bool useSystolic) {
     var now = DateTime.now();

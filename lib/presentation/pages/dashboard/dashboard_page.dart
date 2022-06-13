@@ -11,6 +11,7 @@ import 'package:healthtracker/presentation/models/blood_pressure_model.dart';
 import 'package:healthtracker/presentation/pages/blood_glucose/blood_glucose_adding_page/blood_glucose_adding_page.dart';
 import 'package:healthtracker/presentation/pages/blood_glucose/blood_glucose_dashboard/blood_glucose_dashboard_page.dart';
 import 'package:healthtracker/presentation/pages/blood_pressure/blood_pressure_adding_page/blood_pressure_adding_page.dart';
+import 'package:healthtracker/presentation/pages/blood_pressure/blood_pressure_dashboard/blood_pressure_dashboard_page.dart';
 import 'package:healthtracker/presentation/widgets/blood_glucose_line_chart.dart';
 import 'package:healthtracker/presentation/widgets/blood_pressure_line_chart.dart';
 
@@ -198,7 +199,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: const EdgeInsets.all(8),
               child: InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BloodGlucoseDashboardPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BloodPressureDashboardPage()));
                 },
                 child: Card(
                   child: Column(children: [
