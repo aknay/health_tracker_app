@@ -53,7 +53,7 @@
   "acceptable" : "Acceptable",
   "poor" : "Poor",
   "unableToCalculate" : "Unable to calculate",
-  "value": "Value",
+  "reading": "Reading",
   "medication": "Medication",
   "enterValue": "Enter Value",
   "systolic": "Systolic",

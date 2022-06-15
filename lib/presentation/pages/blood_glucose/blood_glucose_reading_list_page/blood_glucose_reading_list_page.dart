@@ -167,7 +167,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(children: [
-                SizedBox(child: Text(AppLocalizations.of(context)!.value + " :",  style: const TextStyle(fontSize: 18)), width: width),
+                SizedBox(child: Text(AppLocalizations.of(context)!.reading + " :",  style: const TextStyle(fontSize: 18)), width: width),
                 Text(readingUi.amount + " " + readingUi.unit,  style: const TextStyle(fontSize: 18)),
               ]),
             ),

@@ -16,9 +16,9 @@ class BloodPressureReadingUi {
 
   String get timeOfDay => _toFormattedTime(reading.dateTime);
 
-  String get systolicReading => reading.systolic.toString() + " mmHg";
+  String get systolicReading => reading.systolic.toString();
 
-  String get diastolicReading => reading.diastolic.toString() + " mmHg";
+  String get diastolicReading => reading.diastolic.toString();
 
   DateTime get dateTimeWithoutTime {
     // this is for grouping by date without time

@@ -145,18 +145,10 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(children: [
                 SizedBox(
-                    child: Text(AppLocalizations.of(context)!.systolic + " :", style: const TextStyle(fontSize: 18)),
+                    child: Text(AppLocalizations.of(context)!.reading + " :", style: const TextStyle(fontSize: 18)),
                     width: width),
-                Text(readingUi.systolicReading, style: const TextStyle(fontSize: 18)),
-              ]),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row(children: [
-                SizedBox(
-                    child: Text(AppLocalizations.of(context)!.diastolic + " :", style: const TextStyle(fontSize: 18)),
-                    width: width),
-                Text(readingUi.diastolicReading, style: const TextStyle(fontSize: 18)),
+                Text("${readingUi.systolicReading}/${readingUi.diastolicReading} mmHg",
+                    style: const TextStyle(fontSize: 18)),
               ]),
             ),
             Padding(
