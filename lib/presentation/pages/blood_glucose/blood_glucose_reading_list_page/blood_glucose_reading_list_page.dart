@@ -83,7 +83,7 @@ class _BloodGlucoseReadingListPageState extends State<BloodGlucoseReadingListPag
                                         padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
                                         child: Text(readingList[index].dateAsString,  style: const TextStyle(fontSize: 18)),
                                       )),
-                                  color: darkerPrimaryColor,
+                                  color: softerPrimaryColor.withOpacity(0.5),
                                 )
                               ] +
                               List.from(readingList[index]

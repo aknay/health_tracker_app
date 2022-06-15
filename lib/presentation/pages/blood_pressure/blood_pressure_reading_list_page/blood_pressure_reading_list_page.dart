@@ -84,7 +84,7 @@ class _BloodPressureReadingListPageState extends State<BloodPressureReadingListP
                                         child:
                                             Text(readingList[index].dateAsString, style: const TextStyle(fontSize: 18)),
                                       )),
-                                  color: darkerPrimaryColor,
+                                  color: softerPrimaryColor.withOpacity(0.5),
                                 )
                               ] +
                               List.from(readingList[index]
