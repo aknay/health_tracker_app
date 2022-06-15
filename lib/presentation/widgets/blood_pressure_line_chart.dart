@@ -56,7 +56,7 @@ class BloodPressureLineChart extends StatelessWidget {
   FlBorderData get borderData => FlBorderData(
         show: false,
         border: const Border(
-          bottom: BorderSide(color: Color(0xff4e4965), width: 4),
+          bottom: BorderSide(color: Colors.blue, width: 4),
           left: BorderSide(color: Colors.transparent),
           right: BorderSide(color: Colors.transparent),
           top: BorderSide(color: Colors.transparent),
@@ -66,13 +66,13 @@ class BloodPressureLineChart extends StatelessWidget {
   LineChartBarData get lineChartBarDataSystolic => LineChartBarData(
       isCurved: true,
       curveSmoothness: 0,
-      color: const Color(0x442e27fc),
+      color: const Color(0xff22ff00),
       barWidth: 4,
       isStrokeCapRound: true,
       dotData: FlDotData(
         show: true,
         getDotPainter: (spot, percent, barData, index) =>
-            FlDotCirclePainter(radius: 3, color: Colors.blue.withOpacity(1)),
+            FlDotCirclePainter(radius: 3, color: const Color(0xff22ff00), strokeColor: const Color(0xff22ff00)),
       ),
       belowBarData: BarAreaData(
         show: false,
@@ -85,10 +85,6 @@ class BloodPressureLineChart extends StatelessWidget {
             }
             return true;
           },
-          flLineStyle: FlLine(
-            color: Colors.deepOrange,
-            strokeWidth: 2,
-          ),
         ),
       ),
       spots: statistic
@@ -99,13 +95,13 @@ class BloodPressureLineChart extends StatelessWidget {
   LineChartBarData get lineChartBarDataDiastolic => LineChartBarData(
       isCurved: true,
       curveSmoothness: 0,
-      color: const Color(0x44ff2afb),
+      color: Colors.blue,
       barWidth: 4,
       isStrokeCapRound: true,
       dotData: FlDotData(
         show: true,
         getDotPainter: (spot, percent, barData, index) =>
-            FlDotCirclePainter(radius: 3, color: Colors.blue.withOpacity(1)),
+            FlDotCirclePainter(radius: 3, color: Colors.blue, strokeColor: Colors.blue),
       ),
       belowBarData: BarAreaData(
         show: false,
@@ -118,10 +114,6 @@ class BloodPressureLineChart extends StatelessWidget {
             }
             return true;
           },
-          flLineStyle: FlLine(
-            color: Colors.deepOrange,
-            strokeWidth: 2,
-          ),
         ),
       ),
       spots: statistic
@@ -138,10 +130,6 @@ class BloodPressureLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = _positiveIntegers(start: statistic.minValue.toInt(), end: statistic.maxValue.toInt())
-        .where((element) => element % 20 == 0) // don't use 0// take 10 numbers
-        .toList(); // create a list
-
     SideTitles leftTitles = SideTitles(
       showTitles: false,
       interval: 20,

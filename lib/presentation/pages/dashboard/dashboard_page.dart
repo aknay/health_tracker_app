@@ -14,6 +14,7 @@ import 'package:healthtracker/presentation/pages/blood_pressure/blood_pressure_a
 import 'package:healthtracker/presentation/pages/blood_pressure/blood_pressure_dashboard/blood_pressure_dashboard_page.dart';
 import 'package:healthtracker/presentation/widgets/blood_glucose_line_chart.dart';
 import 'package:healthtracker/presentation/widgets/blood_pressure_line_chart.dart';
+import 'package:healthtracker/presentation/widgets/indicator.dart';
 
 import 'dashboard_page_view_model.dart';
 
@@ -201,67 +202,81 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const BloodPressureDashboardPage()));
                 },
-                child: Card(
-                  child: Column(children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context)!.textBloodPressure,
-                                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                              Text(AppLocalizations.of(context)!.past7Days),
-                              StreamBuilder<BloodPressureReadingStatistic>(
-                                  stream: _viewModel.bloodPressureStatisticStream,
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasError || snapshot.data == null) {
-                                      return const Text("Has error");
-                                    }
-                                    return Row(
-                                      children: [
-                                        Text(
-                                          snapshot.data!.systolicAverage.toStringAsFixed(0) +
-                                              "/" +
-                                              snapshot.data!.diastolicAverage.toStringAsFixed(0),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold, fontSize: 32, color: Colors.indigo),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 2),
-                                          child: Text("mmHg (${AppLocalizations.of(context)!.average})"),
-                                        )
-                                      ],
-                                    );
-                                  }),
-                            ],
+                child: SizedBox(
+                  height: 300,
+                  child: Card(
+                    child: Column(children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)!.textBloodPressure,
+                                    style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                                Text(AppLocalizations.of(context)!.past7Days),
+                                StreamBuilder<BloodPressureReadingStatistic>(
+                                    stream: _viewModel.bloodPressureStatisticStream,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError || snapshot.data == null) {
+                                        return const Text("Has error");
+                                      }
+                                      return Row(
+                                        children: [
+                                          Text(
+                                            snapshot.data!.systolicAverage.toStringAsFixed(0) +
+                                                "/" +
+                                                snapshot.data!.diastolicAverage.toStringAsFixed(0),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold, fontSize: 32, color: Colors.indigo),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 2),
+                                            child: Text("mmHg (${AppLocalizations.of(context)!.average})"),
+                                          )
+                                        ],
+                                      );
+                                    }),
+                              ],
+                            ),
                           ),
+                          const Spacer(),
+                          const Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 16),
+                              child: Icon(Icons.arrow_forward_ios_outlined, size: 14.0),
+                            ),
+                          )
+                        ],
+                      ),
+                      Expanded(
+
+                        child: StreamBuilder<BloodPressureReadingStatistic>(
+                            stream: _viewModel.bloodPressureStatisticStream,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError || snapshot.data == null) {
+                                return const Text("Has error");
+                              }
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 24, right: 8, bottom: 8),
+                                child: BloodPressureLineChart(statistic: snapshot.data!),
+                              );
+                            }),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Indicator(color: const Color(0xff22ff00), text: AppLocalizations.of(context)!.systolic, isSquare: true),
+                            const SizedBox(width: 10),
+                            Indicator(color: Colors.blue, text: AppLocalizations.of(context)!.diastolic, isSquare: true),
+                          ],
                         ),
-                        const Spacer(),
-                        const Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 16),
-                            child: Icon(Icons.arrow_forward_ios_outlined, size: 14.0),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: StreamBuilder<BloodPressureReadingStatistic>(
-                          stream: _viewModel.bloodPressureStatisticStream,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError || snapshot.data == null) {
-                              return const Text("Has error");
-                            }
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 24, right: 8, bottom: 8),
-                              child: BloodPressureLineChart(statistic: snapshot.data!),
-                            );
-                          }),
-                    )
-                  ]),
+                      )
+                    ]),
+                  ),
                 ),
               ),
             ),
