@@ -130,80 +130,82 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const BloodGlucoseDashboardPage()));
                 },
-                child: Card(
-                  child: Column(children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context)!.bloodGlucose,
-                                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                              Text(AppLocalizations.of(context)!.past7Days +
-                                  "  |  " +
-                                  AppLocalizations.of(context)!.allPeriods),
-                              StreamBuilder<BloodGlucoseStatistic>(
-                                  stream: _viewModel.bloodGlucoseStatisticStream,
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasError || snapshot.data == null) {
-                                      return const Text("Has error");
-                                    }
-                                    BloodGlucoseUnit unit = snapshot.data!.systemBloodGlucoseUnit;
-                                    return Row(
-                                      children: [
-                                        Text(
-                                          snapshot.data!.average.toStringAsFixed(1),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold, fontSize: 32, color: Colors.indigo),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 2),
-                                          child: Text(
-                                              unit.toHumanReadable + " (${AppLocalizations.of(context)!.average})"),
-                                        )
-                                      ],
-                                    );
-                                  }),
-                            ],
+                child: SizedBox(
+                  height: chartHeight,
+                  child: Card(
+                    child: Column(children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)!.bloodGlucose,
+                                    style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                                Text(AppLocalizations.of(context)!.past7Days +
+                                    "  |  " +
+                                    AppLocalizations.of(context)!.allPeriods),
+                                StreamBuilder<BloodGlucoseStatistic>(
+                                    stream: _viewModel.bloodGlucoseStatisticStream,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasError || snapshot.data == null) {
+                                        return const Text("Has error");
+                                      }
+                                      BloodGlucoseUnit unit = snapshot.data!.systemBloodGlucoseUnit;
+                                      return Row(
+                                        children: [
+                                          Text(
+                                            snapshot.data!.average.toStringAsFixed(1),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold, fontSize: 32, color: Colors.indigo),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 2),
+                                            child: Text(
+                                                unit.toHumanReadable + " (${AppLocalizations.of(context)!.average})"),
+                                          )
+                                        ],
+                                      );
+                                    }),
+                              ],
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        const Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 16),
-                            child: Icon(Icons.arrow_forward_ios_outlined, size: 14.0),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: StreamBuilder<BloodGlucoseStatistic>(
-                          stream: _viewModel.bloodGlucoseStatisticStream,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasError || snapshot.data == null) {
-                              return const Text("Has error");
-                            }
-                            return Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: BloodGlucoseLineChart(statistic: snapshot.data!),
-                            );
-                          }),
-                    )
-                  ]),
+                          const Spacer(),
+                          const Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 16),
+                              child: Icon(Icons.arrow_forward_ios_outlined, size: 14.0),
+                            ),
+                          )
+                        ],
+                      ),
+                      Expanded(
+                        child: StreamBuilder<BloodGlucoseStatistic>(
+                            stream: _viewModel.bloodGlucoseStatisticStream,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError || snapshot.data == null) {
+                                return const Text("Has error");
+                              }
+                              return Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: BloodGlucoseLineChart(statistic: snapshot.data!),
+                              );
+                            }),
+                      )
+                    ]),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
               child: InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const BloodPressureDashboardPage()));
                 },
                 child: SizedBox(
-                  height: 300,
+                  height: chartHeight,
                   child: Card(
                     child: Column(children: [
                       Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:healthtracker/presentation/constant.dart';
 import 'package:healthtracker/presentation/widgets/blood_glucose_chart_card/blood_glucose_chart_card.dart';
 
 import 'blood_glucose_dashboard_page_view_model.dart';
@@ -67,7 +68,7 @@ class _DashboardPageState extends State<BloodGlucoseDashboardPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 255,
+                        height: chartHeight,
                         child: StreamBuilder<BloodGlucoseStatisticBundle>(
                             stream: _viewModel.bloodGlucoseStatisticStream,
                             builder: (context, snapshot) {

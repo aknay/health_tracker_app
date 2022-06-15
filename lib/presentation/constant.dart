@@ -28,3 +28,4 @@ const primaryTriadicColor1 = Color(0xff9f84d1);
 const primaryTriadicColor2 = Color(0xffd19f84);
 const complementaryColor = Color(0xffd184b6);
 const eelColor = Color(0xff4b4b4b);
+const chartHeight = 300.0;

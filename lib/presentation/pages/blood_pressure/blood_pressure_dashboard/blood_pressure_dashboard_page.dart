@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:healthtracker/presentation/constant.dart';
 import 'package:healthtracker/presentation/widgets/blood_pressure_chart_card.dart';
 
 import 'blood_pressure_dashboard_page_view_model.dart';
@@ -73,7 +74,7 @@ class _DashboardPageState extends State<BloodPressureDashboardPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 255,
+                        height: chartHeight,
                         child: StreamBuilder<BloodPressureStatisticBundle>(
                             stream: _viewModel.bloodPressureStatisticStream,
                             builder: (context, snapshot) {

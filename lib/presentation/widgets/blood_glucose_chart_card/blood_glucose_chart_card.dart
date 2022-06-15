@@ -109,8 +109,7 @@ class _BloodGlucoseChartCardState extends State<BloodGlucoseChartCard> {
             ],
           ),
         ),
-        SizedBox(
-          height: 150,
+        Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: StreamBuilder<BloodGlucoseStatistic>(
