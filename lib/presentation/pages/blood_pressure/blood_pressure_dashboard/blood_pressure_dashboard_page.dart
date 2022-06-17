@@ -31,7 +31,7 @@ class _DashboardPageState extends State<BloodPressureDashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.bloodGlucose),
+        title: Text(AppLocalizations.of(context)!.textBloodPressure),
       ),
       body: SafeArea(
         child: Column(
