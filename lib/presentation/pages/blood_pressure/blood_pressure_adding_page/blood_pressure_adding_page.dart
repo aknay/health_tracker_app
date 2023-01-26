@@ -365,11 +365,11 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                   child: _viewModel.isEditing()
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(AppLocalizations.of(context)!.edit, style: const TextStyle(fontSize: 18)),
+                          child: Text(AppLocalizations.of(context)!.editButtonText, style: const TextStyle(fontSize: 18)),
                         )
                       : Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(AppLocalizations.of(context)!.submit, style: const TextStyle(fontSize: 18)),
+                          child: Text(AppLocalizations.of(context)!.submitButtonText, style: const TextStyle(fontSize: 18)),
                         ),
                 ),
               ),
@@ -392,7 +392,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                             );
                             Widget continueButton = TextButton(
                               child: Text(
-                                AppLocalizations.of(context)!.deleteEntry,
+                                AppLocalizations.of(context)!.deleteEntryButtonText,
                                 style: const TextStyle(fontSize: 18),
                               ),
                               onPressed: () async {
@@ -455,7 +455,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              AppLocalizations.of(context)!.deleteEntry,
+                              AppLocalizations.of(context)!.deleteEntryButtonText,
                               style: const TextStyle(fontSize: 18),
                             ),
                           ),

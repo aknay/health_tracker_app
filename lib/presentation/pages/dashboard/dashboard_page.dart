@@ -143,7 +143,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Text(AppLocalizations.of(context)!.bloodGlucose,
                                     style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                                Text(AppLocalizations.of(context)!.past7Days +
+                                Text(AppLocalizations.of(context)!.past7DaysSingleLineDashBoard +
                                     "  |  " +
                                     AppLocalizations.of(context)!.allPeriods),
                                 StreamBuilder<BloodGlucoseStatistic>(
@@ -217,7 +217,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Text(AppLocalizations.of(context)!.textBloodPressure,
                                     style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                                Text(AppLocalizations.of(context)!.past7Days),
+                                Text(AppLocalizations.of(context)!.past7DaysSingleLineDashBoard),
                                 StreamBuilder<BloodPressureReadingStatistic>(
                                     stream: _viewModel.bloodPressureStatisticStream,
                                     builder: (context, snapshot) {
