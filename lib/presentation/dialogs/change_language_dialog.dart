@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
-
-import '../../domain/services/language_service.dart';
-import '../../domain/value_objects/models.dart';
-import '../../main.dart';
-import '../widgets/dialog/dialog_action_button.dart';
-import '../widgets/dialog/dialog_title.dart';
+import 'package:healthtracker/domain/services/language_service.dart';
+import 'package:healthtracker/domain/value_objects/models.dart';
+import 'package:healthtracker/main.dart';
+import 'package:healthtracker/presentation/widgets/dialog/dialog_action_button.dart';
+import 'package:healthtracker/presentation/widgets/dialog/dialog_title.dart';
 
 class ChangeLanguageDialog extends StatefulWidget {
-  const ChangeLanguageDialog({
-    Key? key,
-  }) : super(key: key);
+  const ChangeLanguageDialog({super.key});
 
   @override
-  _ChangeLanguageDialogState createState() => _ChangeLanguageDialogState();
+  State<StatefulWidget> createState() => _ChangeLanguageDialogState();
 }
 
 class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
@@ -23,7 +20,7 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+return AlertDialog(
       title: DialogTitle(AppLocalizations.of(context)!.changeLanguage),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -31,7 +28,7 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
           Row(
             children: [
               Radio<LanguageOption>(
-                value: LanguageOption.ENGLISH,
+                value: LanguageOption.kEnglish,
                 groupValue: _cardMethod,
                 onChanged: (LanguageOption? value) {
                   setState(() {
@@ -45,7 +42,7 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
           Row(
             children: [
               Radio<LanguageOption>(
-                value: LanguageOption.MYANMAR,
+                value: LanguageOption.kMyanmar,
                 groupValue: _cardMethod,
                 onChanged: (LanguageOption? value) {
                   setState(() {
@@ -69,9 +66,9 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
           child: DialogActionButton(AppLocalizations.of(context)!.ok),
           onPressed: () {
             if (_cardMethod != null) {
-              if (_cardMethod == LanguageOption.ENGLISH) {
+              if (_cardMethod == LanguageOption.kEnglish) {
                 _languageService.set(_cardMethod!).then((value) => {MyApp.setLocale(context, const Locale('en', ''))});
-              } else if (_cardMethod == LanguageOption.MYANMAR) {
+              } else if (_cardMethod == LanguageOption.kMyanmar) {
                 _languageService.set(_cardMethod!).then((value) => {MyApp.setLocale(context, const Locale('my', ''))});
               } else {
                 debugPrint("should not reach here");

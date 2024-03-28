@@ -9,8 +9,8 @@ import 'blood_glucose_chart_card_view_model.dart';
 class BloodGlucoseChartCard extends StatefulWidget {
   const BloodGlucoseChartCard(
     this._data, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final BloodGlucoseStatistic _data;
 
@@ -23,32 +23,26 @@ class _BloodGlucoseChartCardState extends State<BloodGlucoseChartCard> {
 
   List<DropdownMenuItem<String>> dropdownItems(BuildContext context) {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text(AppLocalizations.of(context)!.allPeriods), value: "ALL"),
+      DropdownMenuItem(value: "ALL", child: Text(AppLocalizations.of(context)!.allPeriods)),
       DropdownMenuItem(
+          value: Routine.kBeforeBreakfast.name,
           child: Text(
             AppLocalizations.of(context)!.beforeBreakfast,
-          ),
-          value: Routine.BEFORE_BREAKFAST.name),
+          )),
       DropdownMenuItem(
-          child: Text(AppLocalizations.of(context)!.afterBreakfast), value: Routine.AFTER_BREAKFAST.toString()),
-      DropdownMenuItem(child: Text(AppLocalizations.of(context)!.beforeLunch), value: Routine.BEFORE_LUNCH.toString()),
-      DropdownMenuItem(child: Text(AppLocalizations.of(context)!.afterLunch), value: Routine.AFTER_LUNCH.toString()),
+          value: Routine.kAfterBreakfast.toString(), child: Text(AppLocalizations.of(context)!.afterBreakfast)),
+      DropdownMenuItem(value: Routine.kBeforeLunch.toString(), child: Text(AppLocalizations.of(context)!.beforeLunch)),
+      DropdownMenuItem(value: Routine.kAfterLunch.toString(), child: Text(AppLocalizations.of(context)!.afterLunch)),
       DropdownMenuItem(
-          child: Text(AppLocalizations.of(context)!.beforeDinner), value: Routine.BEFORE_DINNER.toString()),
-      DropdownMenuItem(child: Text(AppLocalizations.of(context)!.afterDinner), value: Routine.AFTER_DINNER.toString()),
+          value: Routine.kBeforeDinner.toString(), child: Text(AppLocalizations.of(context)!.beforeDinner)),
+      DropdownMenuItem(value: Routine.kAfterDinner.toString(), child: Text(AppLocalizations.of(context)!.afterDinner)),
       DropdownMenuItem(
-          child: Text(AppLocalizations.of(context)!.justAfterWakeUp), value: Routine.JUST_AFTER_WAKE_UP.toString()),
+          value: Routine.kJustAfterWakeUp.toString(), child: Text(AppLocalizations.of(context)!.justAfterWakeUp)),
       DropdownMenuItem(
-          child: Text(AppLocalizations.of(context)!.justBeforeBedTime), value: Routine.JUST_BEFORE_BED_TIME.toString()),
-      DropdownMenuItem(child: Text(AppLocalizations.of(context)!.otherRoutine), value: Routine.OTHER.toString()),
+          value: Routine.kJustBeforeBedTime.toString(), child: Text(AppLocalizations.of(context)!.justBeforeBedTime)),
+      DropdownMenuItem(value: Routine.kOther.toString(), child: Text(AppLocalizations.of(context)!.otherRoutine)),
     ];
     return menuItems;
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
   }
 
   @override
@@ -74,7 +68,7 @@ class _BloodGlucoseChartCardState extends State<BloodGlucoseChartCard> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 2),
-                          child: Text(unit.toHumanReadable + " (${AppLocalizations.of(context)!.average})"),
+                          child: Text("${unit.toHumanReadable} (${AppLocalizations.of(context)!.average})"),
                         )
                       ],
                       // );

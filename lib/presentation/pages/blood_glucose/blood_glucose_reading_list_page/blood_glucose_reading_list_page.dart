@@ -11,8 +11,8 @@ import 'blood_glucose_reading_list_view_model.dart';
 
 class BloodGlucoseReadingListPage extends StatefulWidget {
   const BloodGlucoseReadingListPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<BloodGlucoseReadingListPage> createState() => _BloodGlucoseReadingListPageState();
@@ -60,7 +60,9 @@ class _BloodGlucoseReadingListPageState extends State<BloodGlucoseReadingListPag
               final readingList = snapshot.data!;
 
               if (readingList.isEmpty) {
-                return Center(child: Text(AppLocalizations.of(context)!.youDontHaveAnyEntriesYet,  style: const TextStyle(fontSize: 18)));
+                return Center(
+                    child: Text(AppLocalizations.of(context)!.youDontHaveAnyEntriesYet,
+                        style: const TextStyle(fontSize: 18)));
               }
 
               return Padding(
@@ -77,20 +79,19 @@ class _BloodGlucoseReadingListPageState extends State<BloodGlucoseReadingListPag
                         child: Column(
                           children: [
                                 Container(
+                                  color: softerPrimaryColor.withOpacity(0.5),
                                   child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-                                        child: Text(readingList[index].dateAsString,  style: const TextStyle(fontSize: 18)),
+                                        child:
+                                            Text(readingList[index].dateAsString, style: const TextStyle(fontSize: 18)),
                                       )),
-                                  color: softerPrimaryColor.withOpacity(0.5),
                                 )
                               ] +
                               List.from(readingList[index]
                                   .bloodGlucoseReadingUiList
-                                  .mapIndexed((index, e) => Container(
-                                        child: BloodGlucoseReadingListItem(length != index + 1, e),
-                                      ))
+                                  .mapIndexed((index, e) => BloodGlucoseReadingListItem(length != index + 1, e))
                                   .toList()),
                         ),
                       ),
@@ -111,29 +112,29 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
   const BloodGlucoseReadingListItem(
     this.showDivider,
     this.readingUi, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   String _fromRoutineToText(dartz.Option<Routine> v, context) {
     return v.fold(() => "", (a) {
       switch (a) {
-        case Routine.JUST_AFTER_WAKE_UP:
+        case Routine.kJustAfterWakeUp:
           return AppLocalizations.of(context)!.justAfterWakeUp;
-        case Routine.BEFORE_BREAKFAST:
+        case Routine.kBeforeBreakfast:
           return AppLocalizations.of(context)!.beforeBreakfast;
-        case Routine.AFTER_BREAKFAST:
+        case Routine.kAfterBreakfast:
           return AppLocalizations.of(context)!.afterBreakfast;
-        case Routine.BEFORE_LUNCH:
+        case Routine.kBeforeLunch:
           return AppLocalizations.of(context)!.beforeLunch;
-        case Routine.AFTER_LUNCH:
+        case Routine.kAfterLunch:
           return AppLocalizations.of(context)!.afterLunch;
-        case Routine.BEFORE_DINNER:
+        case Routine.kBeforeDinner:
           return AppLocalizations.of(context)!.beforeDinner;
-        case Routine.AFTER_DINNER:
+        case Routine.kAfterDinner:
           return AppLocalizations.of(context)!.afterDinner;
-        case Routine.JUST_BEFORE_BED_TIME:
+        case Routine.kJustBeforeBedTime:
           return AppLocalizations.of(context)!.justBeforeBedTime;
-        case Routine.OTHER:
+        case Routine.kOther:
           return AppLocalizations.of(context)!.otherRoutine;
       }
     });
@@ -156,30 +157,38 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(
                 children: [
-                  SizedBox(child: Text(AppLocalizations.of(context)!.period + " :",  style: const TextStyle(fontSize: 18)), width: width),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[ SizedBox(child: Text(readingUi.timeOfDay,  style: const TextStyle(fontSize: 18)), width: 90),
-                  Text(_fromRoutineToText(readingUi.period, context),  style: const TextStyle(fontSize: 18))])
+                  SizedBox(
+                      width: width,
+                      child: Text("${AppLocalizations.of(context)!.period} :", style: const TextStyle(fontSize: 18))),
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    SizedBox(width: 90, child: Text(readingUi.timeOfDay, style: const TextStyle(fontSize: 18))),
+                    Text(_fromRoutineToText(readingUi.period, context), style: const TextStyle(fontSize: 18))
+                  ])
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(children: [
-                SizedBox(child: Text(AppLocalizations.of(context)!.reading + " :",  style: const TextStyle(fontSize: 18)), width: width),
-                Text(readingUi.amount + " " + readingUi.unit,  style: const TextStyle(fontSize: 18)),
+                SizedBox(
+                    width: width,
+                    child: Text("${AppLocalizations.of(context)!.reading} :", style: const TextStyle(fontSize: 18))),
+                Text("${readingUi.amount} ${readingUi.unit}", style: const TextStyle(fontSize: 18)),
               ]),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(children: [
-                SizedBox(child: Text(AppLocalizations.of(context)!.condition + " :",  style: const TextStyle(fontSize: 18)), width: width),
+                SizedBox(
+                    width: width,
+                    child: Text("${AppLocalizations.of(context)!.condition} :", style: const TextStyle(fontSize: 18))),
 
                 /// need to make a widget
-                readingUi.ratingOrNone.fold(() => Text(AppLocalizations.of(context)!.unableToCalculate,  style: const TextStyle(fontSize: 18)), (a) {
+                readingUi.ratingOrNone.fold(
+                    () => Text(AppLocalizations.of(context)!.unableToCalculate, style: const TextStyle(fontSize: 18)),
+                    (a) {
                   switch (a) {
-                    case BloodGlucoseRating.EXCELLENT:
+                    case BloodGlucoseRating.kExcellent:
                       return Container(
                         color: Colors.green,
                         child: Padding(
@@ -188,7 +197,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                               style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18)),
                         ),
                       );
-                    case BloodGlucoseRating.GOOD:
+                    case BloodGlucoseRating.kGood:
                       return Container(
                           color: Colors.green,
                           child: Padding(
@@ -197,7 +206,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                 style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18)),
                           ));
 
-                    case BloodGlucoseRating.ACCEPTABLE:
+                    case BloodGlucoseRating.kAcceptable:
                       return Container(
                           color: Colors.yellow,
                           child: Padding(
@@ -206,7 +215,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                 style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18)),
                           ));
 
-                    case BloodGlucoseRating.POOR:
+                    case BloodGlucoseRating.kPoor:
                       return Container(
                           color: Colors.redAccent,
                           child: Padding(

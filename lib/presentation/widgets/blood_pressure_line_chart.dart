@@ -5,9 +5,9 @@ import 'package:healthtracker/presentation/models/blood_pressure_model.dart';
 class BloodPressureLineChart extends StatelessWidget {
   final BloodPressureReadingStatistic statistic;
 
-  const BloodPressureLineChart({Key? key, required this.statistic}) : super(key: key);
+  const BloodPressureLineChart({super.key, required this.statistic});
 
-  LineTouchData get lineTouchData2 => LineTouchData(
+  LineTouchData get lineTouchData2 => const LineTouchData(
         enabled: false,
       );
 
@@ -51,7 +51,7 @@ class BloodPressureLineChart extends StatelessWidget {
         getTitlesWidget: bottomTitleWidgets,
       );
 
-  FlGridData get gridData => FlGridData(show: false);
+  FlGridData get gridData => const FlGridData(show: false);
 
   FlBorderData get borderData => FlBorderData(
         show: false,
@@ -130,7 +130,7 @@ class BloodPressureLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SideTitles leftTitles = SideTitles(
+    SideTitles leftTitles = const SideTitles(
       showTitles: false,
       interval: 20,
       reservedSize: 22,
@@ -143,7 +143,7 @@ class BloodPressureLineChart extends StatelessWidget {
       rightTitles: AxisTitles(
         sideTitles: rightTitles(),
       ),
-      topTitles: AxisTitles(
+      topTitles: const AxisTitles(
         sideTitles: SideTitles(showTitles: false),
       ),
       leftTitles: AxisTitles(
@@ -174,7 +174,6 @@ class BloodPressureLineChart extends StatelessWidget {
 
     return LineChart(
       sampleData2,
-      swapAnimationDuration: const Duration(milliseconds: 250),
     );
   }
 }

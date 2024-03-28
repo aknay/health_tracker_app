@@ -11,9 +11,9 @@ import 'package:healthtracker/presentation/utils/string_helper.dart';
 import 'package:healthtracker/presentation/view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
-enum ErrorType { EMPTY_ROUTINE, EMPTY_BLOOD_GLUCOSE }
+enum ErrorType { kEmptyRoutine, kEmptyBloodGlucose }
 
-enum BloodGlucoseRating { EXCELLENT, GOOD, ACCEPTABLE, POOR }
+enum BloodGlucoseRating { kExcellent, kGood, kAcceptable, kPoor }
 
 class ReadingAndUnit {
   final Option<double> reading;
@@ -27,23 +27,23 @@ class ReadingAndUnit {
 
   Option<BloodGlucoseRating> getRatingOrNone(Routine routine) {
     switch (routine) {
-      case Routine.JUST_AFTER_WAKE_UP:
+      case Routine.kJustAfterWakeUp:
         return _getRatingForBeforeFood();
-      case Routine.BEFORE_BREAKFAST:
+      case Routine.kBeforeBreakfast:
         return _getRatingForBeforeFood();
-      case Routine.AFTER_BREAKFAST:
+      case Routine.kAfterBreakfast:
         return _getRatingForAfterFood();
-      case Routine.BEFORE_LUNCH:
+      case Routine.kBeforeLunch:
         return _getRatingForBeforeFood();
-      case Routine.AFTER_LUNCH:
+      case Routine.kAfterLunch:
         return _getRatingForAfterFood();
-      case Routine.BEFORE_DINNER:
+      case Routine.kBeforeDinner:
         return _getRatingForBeforeFood();
-      case Routine.AFTER_DINNER:
+      case Routine.kAfterDinner:
         return _getRatingForAfterFood();
-      case Routine.JUST_BEFORE_BED_TIME:
+      case Routine.kJustBeforeBedTime:
         return _getRatingForAfterFood();
-      case Routine.OTHER:
+      case Routine.kOther:
         return const None();
     }
   }
@@ -51,28 +51,28 @@ class ReadingAndUnit {
   Option<BloodGlucoseRating> _getRatingForBeforeFood() {
     return reading.fold(() => const None(), (value) {
       switch (unit) {
-        case BloodGlucoseUnit.MMOL_DIVIDED_BY_L:
+        case BloodGlucoseUnit.kMmolDividedByL:
           if (value >= 4.0 && value <= 6.0) {
-            return const Some(BloodGlucoseRating.EXCELLENT);
+            return const Some(BloodGlucoseRating.kExcellent);
           } else if (value > 6.0 && value <= 8.0) {
-            return const Some(BloodGlucoseRating.GOOD);
+            return const Some(BloodGlucoseRating.kGood);
           } else if (value > 8.0 && value <= 10.0) {
-            return const Some(BloodGlucoseRating.ACCEPTABLE);
+            return const Some(BloodGlucoseRating.kAcceptable);
           } else if (value > 10.0) {
-            return const Some(BloodGlucoseRating.POOR);
+            return const Some(BloodGlucoseRating.kPoor);
           }
 
           return const None();
 
-        case BloodGlucoseUnit.MG_DIVIDED_BY_DL:
+        case BloodGlucoseUnit.kMgDividedByDl:
           if (value >= 72 && value <= 109) {
-            return const Some(BloodGlucoseRating.EXCELLENT);
+            return const Some(BloodGlucoseRating.kExcellent);
           } else if (value > 109 && value <= 144) {
-            return const Some(BloodGlucoseRating.GOOD);
+            return const Some(BloodGlucoseRating.kGood);
           } else if (value > 144 && value <= 180) {
-            return const Some(BloodGlucoseRating.ACCEPTABLE);
+            return const Some(BloodGlucoseRating.kAcceptable);
           } else if (value > 180) {
-            return const Some(BloodGlucoseRating.POOR);
+            return const Some(BloodGlucoseRating.kPoor);
           }
 
           return const None();
@@ -83,28 +83,28 @@ class ReadingAndUnit {
   Option<BloodGlucoseRating> _getRatingForAfterFood() {
     return reading.fold(() => const None(), (value) {
       switch (unit) {
-        case BloodGlucoseUnit.MMOL_DIVIDED_BY_L:
+        case BloodGlucoseUnit.kMmolDividedByL:
           if (value >= 5.0 && value <= 7.0) {
-            return const Some(BloodGlucoseRating.EXCELLENT);
+            return const Some(BloodGlucoseRating.kExcellent);
           } else if (value > 7.0 && value <= 10.0) {
-            return const Some(BloodGlucoseRating.GOOD);
+            return const Some(BloodGlucoseRating.kGood);
           } else if (value > 10.0 && value <= 13.0) {
-            return const Some(BloodGlucoseRating.ACCEPTABLE);
+            return const Some(BloodGlucoseRating.kAcceptable);
           } else if (value > 13.0) {
-            return const Some(BloodGlucoseRating.POOR);
+            return const Some(BloodGlucoseRating.kPoor);
           }
 
           return const None();
 
-        case BloodGlucoseUnit.MG_DIVIDED_BY_DL:
+        case BloodGlucoseUnit.kMgDividedByDl:
           if (value >= 90 && value <= 126) {
-            return const Some(BloodGlucoseRating.EXCELLENT);
+            return const Some(BloodGlucoseRating.kExcellent);
           } else if (value > 126 && value <= 180) {
-            return const Some(BloodGlucoseRating.GOOD);
+            return const Some(BloodGlucoseRating.kGood);
           } else if (value > 180 && value <= 234) {
-            return const Some(BloodGlucoseRating.ACCEPTABLE);
+            return const Some(BloodGlucoseRating.kAcceptable);
           } else if (value > 234) {
-            return const Some(BloodGlucoseRating.POOR);
+            return const Some(BloodGlucoseRating.kPoor);
           }
 
           return const None();
@@ -113,7 +113,7 @@ class ReadingAndUnit {
   }
 
   factory ReadingAndUnit.asDefault() {
-    return ReadingAndUnit(const None(), BloodGlucoseUnit.MMOL_DIVIDED_BY_L);
+    return ReadingAndUnit(const None(), BloodGlucoseUnit.kMmolDividedByL);
   }
 }
 
@@ -205,9 +205,9 @@ class BloodGlucoseAddingViewModel extends ViewModel {
       return const Right(unit);
     } else {
       if (_routineBehaviorSubject.value.isNone()) {
-        return const Left(ErrorType.EMPTY_ROUTINE);
+        return const Left(ErrorType.kEmptyRoutine);
       } else {
-        return const Left(ErrorType.EMPTY_BLOOD_GLUCOSE);
+        return const Left(ErrorType.kEmptyBloodGlucose);
       }
     }
   }
@@ -227,7 +227,7 @@ class BloodGlucoseAddingViewModel extends ViewModel {
             routine,
             date,
             const None());
-        final v = await _repo.insert(value);
+        await _repo.insert(value);
       });
     });
   }
@@ -261,6 +261,5 @@ class BloodGlucoseAddingViewModel extends ViewModel {
 
   @override
   void dispose() {
-    // TODO: implement dispose
   }
 }

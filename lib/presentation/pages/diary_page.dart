@@ -6,8 +6,8 @@ import 'package:healthtracker/presentation/pages/blood_pressure/blood_pressure_r
 
 class DiaryPage extends StatelessWidget {
   const DiaryPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class DiaryPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: SizedBox(
-                    child: Image.asset("assets/glucose-meter.png"),
                     height: 100,
+                    child: Image.asset("assets/glucose-meter.png"),
                   ),
                 ),
                 Text(AppLocalizations.of(context)!.cardBloodGlucose, style: const TextStyle(fontSize: 18),)
@@ -53,8 +53,8 @@ class DiaryPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: SizedBox(
-                    child: Image.asset("assets/blood-pressure.png"),
                     height: 100,
+                    child: Image.asset("assets/blood-pressure.png"),
                   ),
                 ),
                 Text(AppLocalizations.of(context)!.textBloodPressure, style: const TextStyle(fontSize: 18),)

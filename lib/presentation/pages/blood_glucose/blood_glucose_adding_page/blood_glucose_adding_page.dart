@@ -16,8 +16,8 @@ class BloodGlucoseAddingPage extends StatefulWidget {
 
   const BloodGlucoseAddingPage(
     this.reading, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<BloodGlucoseAddingPage> createState() => _BloodGlucoseAddingPageState();
@@ -114,7 +114,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
         child: SafeArea(
           child: Column(children: [
             ListTile(
-              title: Text(title, style: Theme.of(context).textTheme.headline6),
+              title: Text(title, style: Theme.of(context).textTheme.titleLarge),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -154,7 +154,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                       Text(AppLocalizations.of(context)!.period, style: const TextStyle(fontSize: 18)),
                       const Spacer(),
                       TextButton(
-                        style: TextButton.styleFrom(backgroundColor: primaryColor, primary: Colors.white),
+                        style: TextButton.styleFrom(backgroundColor: primaryColor),
                         onPressed: () async {
                           Routine? v = await showDialog(
                               context: context,
@@ -177,31 +177,31 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                                       Text(AppLocalizations.of(context)!.select, style: const TextStyle(fontSize: 18)),
                                   (a) {
                                 switch (a) {
-                                  case Routine.JUST_AFTER_WAKE_UP:
+                                  case Routine.kJustAfterWakeUp:
                                     return Text(AppLocalizations.of(context)!.justAfterWakeUp,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.BEFORE_BREAKFAST:
+                                  case Routine.kBeforeBreakfast:
                                     return Text(AppLocalizations.of(context)!.beforeBreakfast,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.AFTER_BREAKFAST:
+                                  case Routine.kAfterBreakfast:
                                     return Text(AppLocalizations.of(context)!.afterBreakfast,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.BEFORE_LUNCH:
+                                  case Routine.kBeforeLunch:
                                     return Text(AppLocalizations.of(context)!.beforeLunch,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.AFTER_LUNCH:
+                                  case Routine.kAfterLunch:
                                     return Text(AppLocalizations.of(context)!.afterLunch,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.BEFORE_DINNER:
+                                  case Routine.kBeforeDinner:
                                     return Text(AppLocalizations.of(context)!.beforeDinner,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.AFTER_DINNER:
+                                  case Routine.kAfterDinner:
                                     return Text(AppLocalizations.of(context)!.afterDinner,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.JUST_BEFORE_BED_TIME:
+                                  case Routine.kJustBeforeBedTime:
                                     return Text(AppLocalizations.of(context)!.justBeforeBedTime,
                                         style: const TextStyle(fontSize: 18));
-                                  case Routine.OTHER:
+                                  case Routine.kOther:
                                     return Text(AppLocalizations.of(context)!.otherRoutine,
                                         style: const TextStyle(fontSize: 18));
                                 }
@@ -292,7 +292,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                                   () => Text(AppLocalizations.of(context)!.unableToCalculate,
                                       style: const TextStyle(fontSize: 18)), (a) {
                                 switch (a) {
-                                  case BloodGlucoseRating.EXCELLENT:
+                                  case BloodGlucoseRating.kExcellent:
                                     return Container(
                                       color: Colors.green,
                                       child: Padding(
@@ -302,7 +302,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                                                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18)),
                                       ),
                                     );
-                                  case BloodGlucoseRating.GOOD:
+                                  case BloodGlucoseRating.kGood:
                                     return Container(
                                       color: Colors.green,
                                       child: Padding(
@@ -313,7 +313,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                                       ),
                                     );
 
-                                  case BloodGlucoseRating.ACCEPTABLE:
+                                  case BloodGlucoseRating.kAcceptable:
                                     return Container(
                                       color: Colors.yellow,
                                       child: Padding(
@@ -323,7 +323,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                                       ),
                                     );
 
-                                  case BloodGlucoseRating.POOR:
+                                  case BloodGlucoseRating.kPoor:
                                     return Container(
                                       color: Colors.redAccent,
                                       child: Padding(
@@ -351,7 +351,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                     if (_viewModel.isFormValid().isLeft()) {
                       _viewModel.isFormValid().fold((l) {
                         switch (l) {
-                          case ErrorType.EMPTY_ROUTINE:
+                          case ErrorType.kEmptyRoutine:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(AppLocalizations.of(context)!.errorEmptyRoutine,
@@ -359,7 +359,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                               ),
                             );
                             break;
-                          case ErrorType.EMPTY_BLOOD_GLUCOSE:
+                          case ErrorType.kEmptyBloodGlucose:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(AppLocalizations.of(context)!.errorEmptyBloodGlucose,
@@ -377,29 +377,35 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                       }
 
                       if (_viewModel.isEditing()) {
-                        Navigator.of(context).pop();
-                        await Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => //
-                                    const BloodGlucoseReadingListPage()));
+                        if (context.mounted) {
+                          Navigator.of(context).pop();
+                          await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => //
+                                      const BloodGlucoseReadingListPage()));
+                        }
                       } else {
-                        await Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => //
-                                    const BloodGlucoseReadingListPage()));
+                        if (context.mounted) {
+                          await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => //
+                                      const BloodGlucoseReadingListPage()));
+                        }
                       }
                     }
                   },
                   child: _viewModel.isEditing()
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(AppLocalizations.of(context)!.editButtonText, style: const TextStyle(fontSize: 18)),
+                          child:
+                              Text(AppLocalizations.of(context)!.editButtonText, style: const TextStyle(fontSize: 18)),
                         )
                       : Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(AppLocalizations.of(context)!.submitButtonText, style: const TextStyle(fontSize: 18)),
+                          child: Text(AppLocalizations.of(context)!.submitButtonText,
+                              style: const TextStyle(fontSize: 18)),
                         ),
                 ),
               ),
@@ -411,7 +417,7 @@ class _BloodGlucoseAddingPageState extends State<BloodGlucoseAddingPage> {
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
                           onPressed: () async {
                             // set up the buttons
                             Widget cancelButton = TextButton(

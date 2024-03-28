@@ -7,7 +7,7 @@ import 'package:healthtracker/presentation/widgets/up_to_past_three_month_tab_ba
 import 'blood_pressure_dashboard_page_view_model.dart';
 
 class BloodPressureDashboardPage extends StatefulWidget {
-  const BloodPressureDashboardPage({Key? key}) : super(key: key);
+  const BloodPressureDashboardPage({super.key});
 
   @override
   State<BloodPressureDashboardPage> createState() => _DashboardPageState();
@@ -38,6 +38,7 @@ class _DashboardPageState extends State<BloodPressureDashboardPage> {
         child: Column(
           children: [
             DefaultTabController(
+              length: 3,
               child: Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
@@ -76,7 +77,6 @@ class _DashboardPageState extends State<BloodPressureDashboardPage> {
                   ),
                 ),
               ),
-              length: 3,
             ),
           ],
         ),

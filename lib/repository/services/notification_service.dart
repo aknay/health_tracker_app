@@ -4,13 +4,11 @@ import 'package:healthtracker/repository/services/date_time_helper.dart';
 class NotificationService {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   late AndroidInitializationSettings androidInitializationSettings;
-  late IOSInitializationSettings iosInitializationSettings;
   late InitializationSettings initializationSettings;
 
   Future<void> init() async {
     var androidInitialize = const AndroidInitializationSettings('app_icon');
-    var iOSInitialize = const IOSInitializationSettings();
-    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    var initializationsSettings = InitializationSettings(android: androidInitialize);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(initializationsSettings);
   }
@@ -26,8 +24,7 @@ class NotificationService {
 
     DateTimeHelper.initTimezone();
 
-    fln.zonedSchedule(0, "title", "body", DateTimeHelper.scheduleDaily(const Time(09, 05)), platformChannelSpecifics,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-        androidAllowWhileIdle: true);
+    fln.zonedSchedule(0, "title", "body", DateTimeHelper.scheduleDaily(DateTime(09, 05)), platformChannelSpecifics,
+        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime);
   }
 }

@@ -54,7 +54,7 @@ class BloodGlucoseReadingHiveRepository implements BloodGlucoseReadingRepository
       await _box.put(reading.id, reading);
       return right(unit);
     } catch (e) {
-      return left(RetrievedError("Unable to insert" + e.toString()));
+      return left(RetrievedError("Unable to insert$e"));
     }
   }
 

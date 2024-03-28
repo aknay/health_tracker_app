@@ -52,7 +52,7 @@ class BloodPressureReadingHiveRepository implements BloodPressureReadingReposito
       await _box.put(reading.id, reading);
       return right(unit);
     } catch (e) {
-      return left(RetrievedError("Unable to insert" + e.toString()));
+      return left(RetrievedError("Unable to insert$e"));
     }
   }
 
@@ -88,9 +88,7 @@ class BloodPressureReadingHiveRepository implements BloodPressureReadingReposito
     _box = await Hive.openBox<BloodPressureReading>(BloodPressureReading.tableName);
   }
 
-  @override
   Either<RetrievedError, Unit> update(BloodPressureReading reading) {
-    // TODO: implement update
     throw UnimplementedError();
   }
 }

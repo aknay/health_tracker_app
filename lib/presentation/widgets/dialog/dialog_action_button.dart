@@ -1,13 +1,13 @@
 import 'package:flutter/widgets.dart';
+import 'package:healthtracker/presentation/constant.dart';
 
-import '../../constant.dart';
 
 class DialogActionButton extends StatelessWidget {
   final String text;
   const DialogActionButton(
       this.text,{
-        Key? key,
-      }) : super(key: key);
+        super.key,
+      });
 
   @override
   Widget build(BuildContext context) {

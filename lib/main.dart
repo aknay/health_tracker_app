@@ -46,7 +46,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   static void setLocale(BuildContext context, Locale newLocale) async {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
@@ -68,10 +68,10 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     final languageOption = _languageService.get();
     switch (languageOption) {
-      case LanguageOption.ENGLISH:
+      case LanguageOption.kEnglish:
         _locale = const Locale('en', '');
         break;
-      case LanguageOption.MYANMAR:
+      case LanguageOption.kMyanmar:
         _locale = const Locale('my', '');
         break;
     }
@@ -118,7 +118,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -147,6 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(titleList[_selectedIndex]),
+
         ///disable for now
         // actions: [
         // PopupMenuButton(

@@ -6,8 +6,8 @@ import 'package:healthtracker/presentation/settings/units_page/units_page_view_m
 
 class UnitPage extends StatefulWidget {
   const UnitPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<UnitPage> createState() => _UnitPageState();

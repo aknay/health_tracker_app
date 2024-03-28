@@ -5,8 +5,8 @@ import 'package:healthtracker/presentation/settings/units_page/units_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

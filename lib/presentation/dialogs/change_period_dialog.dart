@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../domain/models/enums.dart';
-import '../widgets/dialog/dialog_action_button.dart';
-import '../widgets/dialog/dialog_title.dart';
+import 'package:healthtracker/domain/models/enums.dart';
+import 'package:healthtracker/presentation/widgets/dialog/dialog_action_button.dart';
+import 'package:healthtracker/presentation/widgets/dialog/dialog_title.dart';
 
 class ChangePeriodDialog extends StatefulWidget {
-  const ChangePeriodDialog({
-    Key? key,
-  }) : super(key: key);
+  const ChangePeriodDialog({super.key});
 
   @override
-  _ChangePeriodDialogState createState() => _ChangePeriodDialogState();
+  State<StatefulWidget> createState() => _ChangePeriodDialogState();
 }
 
 class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
-  late Routine? _routine = Routine.BEFORE_BREAKFAST;
+  late Routine? _routine = Routine.kBeforeBreakfast;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
           children: [
             RadioListTile<Routine>(
               title: Text(AppLocalizations.of(context)!.justAfterWakeUp),
-              value: Routine.JUST_AFTER_WAKE_UP,
+              value: Routine.kJustAfterWakeUp,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -36,7 +33,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               },
             ),
             RadioListTile<Routine>(
-              value: Routine.BEFORE_BREAKFAST,
+              value: Routine.kBeforeBreakfast,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -46,7 +43,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               title: Text(AppLocalizations.of(context)!.beforeBreakfast),
             ),
             RadioListTile<Routine>(
-              value: Routine.AFTER_BREAKFAST,
+              value: Routine.kAfterBreakfast,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -56,7 +53,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               title: Text(AppLocalizations.of(context)!.afterBreakfast),
             ),
             RadioListTile<Routine>(
-              value: Routine.BEFORE_LUNCH,
+              value: Routine.kBeforeLunch,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -66,7 +63,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               title: Text(AppLocalizations.of(context)!.beforeLunch),
             ),
             RadioListTile<Routine>(
-              value: Routine.AFTER_LUNCH,
+              value: Routine.kAfterLunch,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -77,7 +74,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
             ),
             RadioListTile<Routine>(
               title: Text(AppLocalizations.of(context)!.beforeDinner),
-              value: Routine.BEFORE_DINNER,
+              value: Routine.kBeforeDinner,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -86,7 +83,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               },
             ),
             RadioListTile<Routine>(
-              value: Routine.AFTER_DINNER,
+              value: Routine.kAfterDinner,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -96,7 +93,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               title: Text(AppLocalizations.of(context)!.afterDinner),
             ),
             RadioListTile<Routine>(
-              value: Routine.JUST_BEFORE_BED_TIME,
+              value: Routine.kJustBeforeBedTime,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {
@@ -106,7 +103,7 @@ class _ChangePeriodDialogState extends State<ChangePeriodDialog> {
               title: Text(AppLocalizations.of(context)!.justBeforeBedTime),
             ),
             RadioListTile<Routine>(
-              value: Routine.OTHER,
+              value: Routine.kOther,
               groupValue: _routine,
               onChanged: (Routine? value) {
                 setState(() {

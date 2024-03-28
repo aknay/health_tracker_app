@@ -4,11 +4,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:healthtracker/presentation/models/blood_glucose_models.dart';
 
 class BloodGlucoseLineChart extends StatelessWidget {
-  const BloodGlucoseLineChart({Key? key, required this.statistic}) : super(key: key);
+  const BloodGlucoseLineChart({super.key, required this.statistic});
 
   final BloodGlucoseStatistic statistic;
 
-  LineTouchData get lineTouchData2 => LineTouchData(
+  LineTouchData get lineTouchData2 => const LineTouchData(
         enabled: false,
       );
 
@@ -57,7 +57,7 @@ class BloodGlucoseLineChart extends StatelessWidget {
         getTitlesWidget: bottomTitleWidgets,
       );
 
-  FlGridData get gridData => FlGridData(show: false);
+  FlGridData get gridData => const FlGridData(show: false);
 
   FlBorderData get borderData => FlBorderData(
         show: false,
@@ -91,7 +91,7 @@ class BloodGlucoseLineChart extends StatelessWidget {
             }
             return true;
           },
-          flLineStyle: FlLine(
+          flLineStyle: const FlLine(
             color: Colors.deepOrange,
             strokeWidth: 2,
           ),
@@ -128,7 +128,7 @@ class BloodGlucoseLineChart extends StatelessWidget {
       rightTitles: AxisTitles(
         sideTitles: rightTitles(),
       ),
-      topTitles: AxisTitles(
+      topTitles: const AxisTitles(
         sideTitles: SideTitles(showTitles: false),
       ),
       leftTitles: AxisTitles(
@@ -159,7 +159,6 @@ class BloodGlucoseLineChart extends StatelessWidget {
 
     return LineChart(
       sampleData2,
-      swapAnimationDuration: const Duration(milliseconds: 250),
     );
   }
 }

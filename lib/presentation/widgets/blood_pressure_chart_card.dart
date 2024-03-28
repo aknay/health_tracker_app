@@ -9,8 +9,8 @@ class BloodPressureChartCard extends StatelessWidget {
 
   const BloodPressureChartCard(
     this._statistic, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

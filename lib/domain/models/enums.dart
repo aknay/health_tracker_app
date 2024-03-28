@@ -1,49 +1,49 @@
 import 'package:dartz/dartz.dart';
 
-enum BodyPosition { STANDING, SITTING, LYING_DOWN, RECLINING }
+enum BodyPosition { kStanding, kSitting, kLyingDown, kReclinging }
 
 extension BodyPositionExtension on BodyPosition {
   String get name {
     switch (this) {
-      case BodyPosition.STANDING:
+      case BodyPosition.kStanding:
         return 'STANDING';
-      case BodyPosition.SITTING:
+      case BodyPosition.kSitting:
         return 'SITTING';
-      case BodyPosition.LYING_DOWN:
+      case BodyPosition.kLyingDown:
         return 'LYING_DOWN';
-      case BodyPosition.RECLINING:
+      case BodyPosition.kReclinging:
         return 'RECLINING';
     }
   }
 }
 
-enum ArmLocation { LEFT_WRIST, RIGHT_WRIST, LEFT_UPPER_ARM, RIGHT_UPPER_ARM }
+enum ArmLocation { kLeftWrist, kRightWrist, kLeftUpperArm, kRightUpperArm }
 
 extension ArmLocationExtension on ArmLocation {
   String get name {
     switch (this) {
-      case ArmLocation.LEFT_WRIST:
+      case ArmLocation.kLeftWrist:
         return 'LEFT_WRIST';
-      case ArmLocation.RIGHT_WRIST:
+      case ArmLocation.kRightWrist:
         return 'RIGHT_WRIST';
-      case ArmLocation.LEFT_UPPER_ARM:
+      case ArmLocation.kLeftUpperArm:
         return 'LEFT_UPPER_ARM';
-      case ArmLocation.RIGHT_UPPER_ARM:
+      case ArmLocation.kRightUpperArm:
         return 'RIGHT_UPPER_ARM';
     }
   }
 }
 
 enum Routine {
-  JUST_AFTER_WAKE_UP,
-  BEFORE_BREAKFAST,
-  AFTER_BREAKFAST,
-  BEFORE_LUNCH,
-  AFTER_LUNCH,
-  BEFORE_DINNER,
-  AFTER_DINNER,
-  JUST_BEFORE_BED_TIME,
-  OTHER,
+  kJustAfterWakeUp,
+  kBeforeBreakfast,
+  kAfterBreakfast,
+  kBeforeLunch,
+  kAfterLunch,
+  kBeforeDinner,
+  kAfterDinner,
+  kJustBeforeBedTime,
+  kOther,
 }
 
 Option<Routine> fromRoutineStringToEnum(String v) {
@@ -52,16 +52,16 @@ Option<Routine> fromRoutineStringToEnum(String v) {
 }
 
 enum BloodGlucoseUnit {
-  MMOL_DIVIDED_BY_L,
-  MG_DIVIDED_BY_DL,
+  kMmolDividedByL,
+  kMgDividedByDl,
 }
 
 extension BloodGlucoseUnitExtension on BloodGlucoseUnit {
   String get toHumanReadable {
     switch (this) {
-      case BloodGlucoseUnit.MMOL_DIVIDED_BY_L:
+      case BloodGlucoseUnit.kMmolDividedByL:
         return "mmol/L";
-      case BloodGlucoseUnit.MG_DIVIDED_BY_DL:
+      case BloodGlucoseUnit.kMgDividedByDl:
         return "mg/dL";
     }
   }

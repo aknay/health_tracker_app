@@ -9,9 +9,9 @@ class CustomException implements Exception {
 }
 
 class RetrievedError extends CustomException {
-  RetrievedError(String message) : super(message);
+  RetrievedError(super.message);
 }
 
 class InvalidReading extends CustomException {
-  InvalidReading(String message) : super(message);
+  InvalidReading(super.message);
 }

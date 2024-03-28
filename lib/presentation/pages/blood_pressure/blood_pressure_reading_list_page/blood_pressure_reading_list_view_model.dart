@@ -33,7 +33,7 @@ class BloodPressureReadingUi {
   }
 
   Either<BloodPressureRatingError, Option<BloodPressureRating>> get ratingOrNone =>
-      getBloodPressureRating(systolicReading: this.reading.systolic, diastolicReading: this.reading.diastolic);
+      getBloodPressureRating(systolicReading: reading.systolic, diastolicReading: reading.diastolic);
 }
 
 class BloodGlucoseReadingByDateUI {
@@ -88,6 +88,5 @@ class BloodPressureReadingListViewModel extends ViewModel {
 
   @override
   void dispose() {
-    // TODO: implement dispose
   }
 }

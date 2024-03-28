@@ -1,4 +1,4 @@
 enum LanguageOption {
-  ENGLISH, //
-  MYANMAR,
+  kEnglish,
+  kMyanmar,
 }

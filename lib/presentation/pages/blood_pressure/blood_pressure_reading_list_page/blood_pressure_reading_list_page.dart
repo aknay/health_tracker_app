@@ -9,8 +9,8 @@ import 'package:healthtracker/presentation/pages/blood_pressure/blood_pressure_r
 
 class BloodPressureReadingListPage extends StatefulWidget {
   const BloodPressureReadingListPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<BloodPressureReadingListPage> createState() => _BloodPressureReadingListPageState();
@@ -77,6 +77,7 @@ class _BloodPressureReadingListPageState extends State<BloodPressureReadingListP
                         child: Column(
                           children: [
                                 Container(
+                                  color: softerPrimaryColor.withOpacity(0.5),
                                   child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Padding(
@@ -84,14 +85,11 @@ class _BloodPressureReadingListPageState extends State<BloodPressureReadingListP
                                         child:
                                             Text(readingList[index].dateAsString, style: const TextStyle(fontSize: 18)),
                                       )),
-                                  color: softerPrimaryColor.withOpacity(0.5),
                                 )
                               ] +
                               List.from(readingList[index]
                                   .bloodGlucoseReadingUiList
-                                  .mapIndexed((index, e) => Container(
-                                        child: BloodGlucoseReadingListItem(length != index + 1, e),
-                                      ))
+                                  .mapIndexed((index, e) => BloodGlucoseReadingListItem(length != index + 1, e))
                                   .toList()),
                         ),
                       ),
@@ -112,8 +110,8 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
   const BloodGlucoseReadingListItem(
     this.showDivider,
     this.readingUi, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +131,10 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(
-                      child: Text(AppLocalizations.of(context)!.period + " :", style: const TextStyle(fontSize: 18)),
-                      width: width),
+                      width: width,
+                      child: Text("${AppLocalizations.of(context)!.period} :", style: const TextStyle(fontSize: 18))),
                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    SizedBox(child: Text(readingUi.timeOfDay, style: const TextStyle(fontSize: 18)), width: 90),
+                    SizedBox(width: 90, child: Text(readingUi.timeOfDay, style: const TextStyle(fontSize: 18))),
                   ])
                 ],
               ),
@@ -145,8 +143,8 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(children: [
                 SizedBox(
-                    child: Text(AppLocalizations.of(context)!.reading + " :", style: const TextStyle(fontSize: 18)),
-                    width: width),
+                    width: width,
+                    child: Text("${AppLocalizations.of(context)!.reading} :", style: const TextStyle(fontSize: 18))),
                 Text("${readingUi.systolicReading}/${readingUi.diastolicReading} mmHg",
                     style: const TextStyle(fontSize: 18)),
               ]),
@@ -155,15 +153,15 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(children: [
                 SizedBox(
-                    child: Text(AppLocalizations.of(context)!.condition + " :", style: const TextStyle(fontSize: 18)),
-                    width: width),
+                    width: width,
+                    child: Text("${AppLocalizations.of(context)!.condition} :", style: const TextStyle(fontSize: 18))),
                 readingUi.ratingOrNone.fold(
                     (l) => Text(AppLocalizations.of(context)!.unableToCalculate, style: const TextStyle(fontSize: 18)),
                     (r) => r.fold(
                             () => Text(AppLocalizations.of(context)!.unableToCalculate,
                                 style: const TextStyle(fontSize: 18)), (a) {
                           switch (a) {
-                            case BloodPressureRating.LOW_BLOOD_PRESSURE:
+                            case BloodPressureRating.kLowBloodPressure:
                               return Container(
                                 color: Colors.purpleAccent,
                                 child: Padding(
@@ -176,7 +174,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                 ),
                               );
 
-                            case BloodPressureRating.NORMAL:
+                            case BloodPressureRating.kNormal:
                               return Container(
                                 color: Colors.green,
                                 child: Padding(
@@ -188,7 +186,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                   ),
                                 ),
                               );
-                            case BloodPressureRating.ELEVATED:
+                            case BloodPressureRating.kElevated:
                               return Container(
                                 color: Colors.yellow,
                                 child: Padding(
@@ -200,7 +198,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                   ),
                                 ),
                               );
-                            case BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_1:
+                            case BloodPressureRating.kHighBloodPressureState1:
                               return Container(
                                 color: Colors.amber,
                                 child: Padding(
@@ -212,7 +210,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                   ),
                                 ),
                               );
-                            case BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_2:
+                            case BloodPressureRating.kHighBloodPressureState2:
                               return Container(
                                 color: Colors.deepOrange,
                                 child: Padding(
@@ -224,7 +222,7 @@ class BloodGlucoseReadingListItem extends StatelessWidget {
                                   ),
                                 ),
                               );
-                            case BloodPressureRating.HYPERTENSIVE_CRISIS:
+                            case BloodPressureRating.kHypertensiveCrisis:
                               return Container(
                                 color: Colors.red,
                                 child: Padding(

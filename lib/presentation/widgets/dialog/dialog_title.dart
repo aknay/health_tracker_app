@@ -5,8 +5,8 @@ class DialogTitle extends StatelessWidget {
 
   const DialogTitle(
     this.text, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

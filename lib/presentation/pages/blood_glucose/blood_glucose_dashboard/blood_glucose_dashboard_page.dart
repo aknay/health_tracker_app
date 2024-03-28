@@ -7,7 +7,7 @@ import 'package:healthtracker/presentation/widgets/up_to_past_three_month_tab_ba
 import 'blood_glucose_dashboard_page_view_model.dart';
 
 class BloodGlucoseDashboardPage extends StatefulWidget {
-  const BloodGlucoseDashboardPage({Key? key}) : super(key: key);
+  const BloodGlucoseDashboardPage({super.key});
 
   @override
   State<BloodGlucoseDashboardPage> createState() => _DashboardPageState();
@@ -32,6 +32,7 @@ class _DashboardPageState extends State<BloodGlucoseDashboardPage> {
         child: Column(
           children: [
             DefaultTabController(
+              length: 3,
               child: Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
@@ -70,7 +71,6 @@ class _DashboardPageState extends State<BloodGlucoseDashboardPage> {
                   ),
                 ),
               ),
-              length: 3,
             ),
           ],
         ),

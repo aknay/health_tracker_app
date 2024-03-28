@@ -122,6 +122,5 @@ class BloodPressureAddingViewModel extends ViewModel {
 
   @override
   void dispose() {
-    // TODO: implement dispose
   }
 }

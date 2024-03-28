@@ -14,54 +14,54 @@ void main() {
 
     ///low blood pressure
     final lbp1 = getBloodPressureRating(systolicReading: 89, diastolicReading: 59);
-    expect(lbp1, const Right(Some(BloodPressureRating.LOW_BLOOD_PRESSURE)));
+    expect(lbp1, const Right(Some(BloodPressureRating.kLowBloodPressure)));
     final lbp2 = getBloodPressureRating(systolicReading: 70, diastolicReading: 40);
-    expect(lbp2, const Right(Some(BloodPressureRating.LOW_BLOOD_PRESSURE)));
+    expect(lbp2, const Right(Some(BloodPressureRating.kLowBloodPressure)));
 
     ///normal blood pressure
     final nbp1 = getBloodPressureRating(systolicReading: 119, diastolicReading: 79);
-    expect(nbp1, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp1, const Right(Some(BloodPressureRating.kNormal)));
     final nbp2 = getBloodPressureRating(systolicReading: 90, diastolicReading: 60);
-    expect(nbp2, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp2, const Right(Some(BloodPressureRating.kNormal)));
     final nbp3 = getBloodPressureRating(systolicReading: 89, diastolicReading: 61);
-    expect(nbp3, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp3, const Right(Some(BloodPressureRating.kNormal)));
     final nbp4 = getBloodPressureRating(systolicReading: 70, diastolicReading: 61);
-    expect(nbp4, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp4, const Right(Some(BloodPressureRating.kNormal)));
     final nbp5 = getBloodPressureRating(systolicReading: 89, diastolicReading: 79);
-    expect(nbp5, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp5, const Right(Some(BloodPressureRating.kNormal)));
     final nbp6 = getBloodPressureRating(systolicReading: 91, diastolicReading: 40);
-    expect(nbp6, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp6, const Right(Some(BloodPressureRating.kNormal)));
     final nbp7 = getBloodPressureRating(systolicReading: 119, diastolicReading: 40);
-    expect(nbp7, const Right(Some(BloodPressureRating.NORMAL)));
+    expect(nbp7, const Right(Some(BloodPressureRating.kNormal)));
 
     ///elevated blood pressure
     final ebp1 = getBloodPressureRating(systolicReading: 139, diastolicReading: 89);
-    expect(ebp1, const Right(Some(BloodPressureRating.ELEVATED)));
+    expect(ebp1, const Right(Some(BloodPressureRating.kElevated)));
     final ebp2 = getBloodPressureRating(systolicReading: 120, diastolicReading: 80);
-    expect(ebp2, const Right(Some(BloodPressureRating.ELEVATED)));
+    expect(ebp2, const Right(Some(BloodPressureRating.kElevated)));
     final ebp3 = getBloodPressureRating(systolicReading: 139, diastolicReading: 40);
-    expect(ebp3, const Right(Some(BloodPressureRating.ELEVATED)));
+    expect(ebp3, const Right(Some(BloodPressureRating.kElevated)));
     final ebp4 = getBloodPressureRating(systolicReading: 120, diastolicReading: 40);
-    expect(ebp4, const Right(Some(BloodPressureRating.ELEVATED)));
+    expect(ebp4, const Right(Some(BloodPressureRating.kElevated)));
 
     ///high blood pressure
     final hbp1 = getBloodPressureRating(systolicReading: 179, diastolicReading: 99);
-    expect(hbp1, const Right(Some(BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_1)));
+    expect(hbp1, const Right(Some(BloodPressureRating.kHighBloodPressureState1)));
     final hbp2 = getBloodPressureRating(systolicReading: 140, diastolicReading: 90);
-    expect(hbp2, const Right(Some(BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_1)));
+    expect(hbp2, const Right(Some(BloodPressureRating.kHighBloodPressureState1)));
     final hbp3 = getBloodPressureRating(systolicReading: 179, diastolicReading: 40);
-    expect(hbp3, const Right(Some(BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_1)));
+    expect(hbp3, const Right(Some(BloodPressureRating.kHighBloodPressureState1)));
 
     ///very high blood pressure
     final vhbp1 = getBloodPressureRating(systolicReading: 140, diastolicReading: 100);
-    expect(vhbp1, const Right(Some(BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_2)));
+    expect(vhbp1, const Right(Some(BloodPressureRating.kHighBloodPressureState2)));
     final vhbp2 = getBloodPressureRating(systolicReading: 190, diastolicReading: 100);
-    expect(vhbp2, const Right(Some(BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_2)));
+    expect(vhbp2, const Right(Some(BloodPressureRating.kHighBloodPressureState2)));
 
     ///very very high blood pressure
     final vvhbp1 = getBloodPressureRating(systolicReading: 190, diastolicReading: 101);
-    expect(vvhbp1, const Right(Some(BloodPressureRating.HYPERTENSIVE_CRISIS)));
+    expect(vvhbp1, const Right(Some(BloodPressureRating.kHypertensiveCrisis)));
     final vvhbp2 = getBloodPressureRating(systolicReading: 191, diastolicReading: 100);
-    expect(vvhbp2, const Right(Some(BloodPressureRating.HYPERTENSIVE_CRISIS)));
+    expect(vvhbp2, const Right(Some(BloodPressureRating.kHypertensiveCrisis)));
   });
 }

@@ -14,8 +14,8 @@ class BloodPressureAddingPage extends StatefulWidget {
 
   const BloodPressureAddingPage(
     this.reading, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<BloodPressureAddingPage> createState() => _BloodPressureAddingPageState();
@@ -114,7 +114,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
         child: SafeArea(
           child: Column(children: [
             ListTile(
-              title: Text(title, style: Theme.of(context).textTheme.headline6),
+              title: Text(title, style: Theme.of(context).textTheme.titleLarge),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -156,7 +156,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            Text(AppLocalizations.of(context)!.systolic, style: Theme.of(context).textTheme.headline6),
+                            Text(AppLocalizations.of(context)!.systolic, style: Theme.of(context).textTheme.titleLarge),
                             NumberPicker(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
@@ -175,7 +175,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                       ),
                       Column(
                         children: [
-                          Text(AppLocalizations.of(context)!.diastolic, style: Theme.of(context).textTheme.headline6),
+                          Text(AppLocalizations.of(context)!.diastolic, style: Theme.of(context).textTheme.titleLarge),
                           Row(
                             children: [
                               NumberPicker(
@@ -221,7 +221,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                                           () => Text(AppLocalizations.of(context)!.unableToCalculate,
                                               style: const TextStyle(fontSize: 18)), (a) {
                                         switch (a) {
-                                          case BloodPressureRating.LOW_BLOOD_PRESSURE:
+                                          case BloodPressureRating.kLowBloodPressure:
                                             return Container(
                                               color: Colors.purpleAccent,
                                               child: Padding(
@@ -234,7 +234,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                                               ),
                                             );
 
-                                          case BloodPressureRating.NORMAL:
+                                          case BloodPressureRating.kNormal:
                                             return Container(
                                               color: Colors.green,
                                               child: Padding(
@@ -246,7 +246,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                                                 ),
                                               ),
                                             );
-                                          case BloodPressureRating.ELEVATED:
+                                          case BloodPressureRating.kElevated:
                                             return Container(
                                               color: Colors.yellow,
                                               child: Padding(
@@ -258,7 +258,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                                                 ),
                                               ),
                                             );
-                                          case BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_1:
+                                          case BloodPressureRating.kHighBloodPressureState1:
                                             return Container(
                                               color: Colors.amber,
                                               child: Padding(
@@ -270,7 +270,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                                                 ),
                                               ),
                                             );
-                                          case BloodPressureRating.HIGH_BLOOD_PRESSURE_STATE_2:
+                                          case BloodPressureRating.kHighBloodPressureState2:
                                             return Container(
                                               color: Colors.deepOrange,
                                               child: Padding(
@@ -282,7 +282,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                                                 ),
                                               ),
                                             );
-                                          case BloodPressureRating.HYPERTENSIVE_CRISIS:
+                                          case BloodPressureRating.kHypertensiveCrisis:
                                             return Container(
                                               color: Colors.red,
                                               child: Padding(
@@ -313,7 +313,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                     if (_viewModel.isFormValid().isLeft()) {
                       _viewModel.isFormValid().fold((l) {
                         switch (l) {
-                          case BloodPressureRatingError.NOT_VALID:
+                          case BloodPressureRatingError.kNotValid:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(AppLocalizations.of(context)!.errorEmptyRoutine,
@@ -321,7 +321,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                               ),
                             );
                             break;
-                          case BloodPressureRatingError.SYSTOLIC_READING_SHOULD_BE_HIGHER_THAN_DIASTOLIC:
+                          case BloodPressureRatingError.kSystolicReadingShouldBeHigherThanDiastolic:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(AppLocalizations.of(context)!.errorEmptyRoutine,
@@ -329,7 +329,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                               ),
                             );
                             break;
-                          case BloodPressureRatingError.READING_TOO_LOW:
+                          case BloodPressureRatingError.kReadingTooLow:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(AppLocalizations.of(context)!.errorEmptyRoutine,
@@ -347,29 +347,35 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                       }
 
                       if (_viewModel.isEditing()) {
-                        Navigator.of(context).pop();
-                        await Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => //
-                                    const BloodPressureReadingListPage()));
+                        if (context.mounted) {
+                          Navigator.of(context).pop();
+                          await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => //
+                                      const BloodPressureReadingListPage()));
+                        }
                       } else {
-                        await Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => //
-                                    const BloodPressureReadingListPage()));
+                        if (context.mounted) {
+                          await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => //
+                                      const BloodPressureReadingListPage()));
+                        }
                       }
                     }
                   },
                   child: _viewModel.isEditing()
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(AppLocalizations.of(context)!.editButtonText, style: const TextStyle(fontSize: 18)),
+                          child:
+                              Text(AppLocalizations.of(context)!.editButtonText, style: const TextStyle(fontSize: 18)),
                         )
                       : Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(AppLocalizations.of(context)!.submitButtonText, style: const TextStyle(fontSize: 18)),
+                          child: Text(AppLocalizations.of(context)!.submitButtonText,
+                              style: const TextStyle(fontSize: 18)),
                         ),
                 ),
               ),
@@ -381,7 +387,7 @@ class _BloodPressureAddingPageState extends State<BloodPressureAddingPage> {
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
                           onPressed: () async {
                             // set up the buttons
                             Widget cancelButton = TextButton(

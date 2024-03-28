@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
-
-import '../../domain/models/enums.dart';
-import '../../domain/services/units_service.dart';
-import '../widgets/dialog/dialog_action_button.dart';
-import '../widgets/dialog/dialog_title.dart';
+import 'package:healthtracker/domain/models/enums.dart';
+import 'package:healthtracker/domain/services/units_service.dart';
+import 'package:healthtracker/presentation/widgets/dialog/dialog_action_button.dart';
+import 'package:healthtracker/presentation/widgets/dialog/dialog_title.dart';
 
 class ChangeBloodGlucoseUnitDialog extends StatefulWidget {
-  const ChangeBloodGlucoseUnitDialog({
-    Key? key,
-  }) : super(key: key);
+  const ChangeBloodGlucoseUnitDialog({super.key});
 
   @override
-  _ChangeBloodGlucoseDialogState createState() => _ChangeBloodGlucoseDialogState();
+  State<StatefulWidget> createState() => _ChangeBloodGlucoseUnitDialogState();
 }
 
-class _ChangeBloodGlucoseDialogState extends State<ChangeBloodGlucoseUnitDialog> {
+class _ChangeBloodGlucoseUnitDialogState extends State<ChangeBloodGlucoseUnitDialog> {
   final _unitService = GetIt.instance<UnitService>();
   late BloodGlucoseUnit? _unit = _unitService.getBloodGlucoseUnit();
 
@@ -28,8 +25,8 @@ class _ChangeBloodGlucoseDialogState extends State<ChangeBloodGlucoseUnitDialog>
         mainAxisSize: MainAxisSize.min,
         children: [
           RadioListTile<BloodGlucoseUnit>(
-            title: Text(BloodGlucoseUnit.MMOL_DIVIDED_BY_L.toHumanReadable, style: const TextStyle(fontSize: 18)),
-            value: BloodGlucoseUnit.MMOL_DIVIDED_BY_L,
+            title: Text(BloodGlucoseUnit.kMmolDividedByL.toHumanReadable, style: const TextStyle(fontSize: 18)),
+            value: BloodGlucoseUnit.kMmolDividedByL,
             groupValue: _unit,
             onChanged: (BloodGlucoseUnit? value) {
               setState(() {
@@ -38,8 +35,8 @@ class _ChangeBloodGlucoseDialogState extends State<ChangeBloodGlucoseUnitDialog>
             },
           ),
           RadioListTile<BloodGlucoseUnit>(
-            title: Text(BloodGlucoseUnit.MG_DIVIDED_BY_DL.toHumanReadable, style: const TextStyle(fontSize: 18)),
-            value: BloodGlucoseUnit.MG_DIVIDED_BY_DL,
+            title: Text(BloodGlucoseUnit.kMgDividedByDl.toHumanReadable, style: const TextStyle(fontSize: 18)),
+            value: BloodGlucoseUnit.kMgDividedByDl,
             groupValue: _unit,
             onChanged: (BloodGlucoseUnit? value) {
               setState(() {
@@ -59,8 +56,6 @@ class _ChangeBloodGlucoseDialogState extends State<ChangeBloodGlucoseUnitDialog>
         TextButton(
           child: DialogActionButton(AppLocalizations.of(context)!.ok),
           onPressed: () {
-            ///TODO
-
             Navigator.pop(context, _unit);
           },
         ),

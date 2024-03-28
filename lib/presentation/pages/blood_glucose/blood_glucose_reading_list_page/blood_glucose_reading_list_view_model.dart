@@ -98,6 +98,5 @@ class BloodGlucoseReadingListViewModel extends ViewModel {
 
   @override
   void dispose() {
-    // TODO: implement dispose
   }
 }

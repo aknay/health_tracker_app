@@ -64,10 +64,10 @@ class BloodGlucoseReading extends HiveObject {
       return value;
     } else {
       switch (savedUnit) {
-        case BloodGlucoseUnit.MMOL_DIVIDED_BY_L:
+        case BloodGlucoseUnit.kMmolDividedByL:
           return value * 18;
 
-        case BloodGlucoseUnit.MG_DIVIDED_BY_DL:
+        case BloodGlucoseUnit.kMgDividedByDl:
           return value / 18;
       }
     }

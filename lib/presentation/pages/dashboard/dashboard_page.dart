@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,7 +21,7 @@ import 'package:healthtracker/presentation/widgets/indicator.dart';
 import 'dashboard_page_view_model.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+  const DashboardPage({super.key});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -44,7 +46,7 @@ class _DashboardPageState extends State<DashboardPage> {
           });
         },
         onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
+          log('Failed to load a banner ad: ${err.message}');
           _isBannerAdReady = false;
           ad.dispose();
         },
@@ -143,9 +145,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Text(AppLocalizations.of(context)!.bloodGlucose,
                                     style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                                Text(AppLocalizations.of(context)!.past7DaysSingleLineDashBoard +
-                                    "  |  " +
-                                    AppLocalizations.of(context)!.allPeriods),
+                                Text("${AppLocalizations.of(context)!.past7DaysSingleLineDashBoard}  |  ${AppLocalizations.of(context)!.allPeriods}"),
                                 StreamBuilder<BloodGlucoseStatistic>(
                                     stream: _viewModel.bloodGlucoseStatisticStream,
                                     builder: (context, snapshot) {
@@ -163,7 +163,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: 2),
                                             child: Text(
-                                                unit.toHumanReadable + " (${AppLocalizations.of(context)!.average})"),
+                                                "${unit.toHumanReadable} (${AppLocalizations.of(context)!.average})"),
                                           )
                                         ],
                                       );
@@ -227,9 +227,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       return Row(
                                         children: [
                                           Text(
-                                            snapshot.data!.systolicAverage.toStringAsFixed(0) +
-                                                "/" +
-                                                snapshot.data!.diastolicAverage.toStringAsFixed(0),
+                                            "${snapshot.data!.systolicAverage.toStringAsFixed(0)}/${snapshot.data!.diastolicAverage.toStringAsFixed(0)}",
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold, fontSize: 32, color: Colors.indigo),
                                           ),
